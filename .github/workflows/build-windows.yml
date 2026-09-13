@@ -1,0 +1,16 @@
+name: Windows Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure
+        run: echo Configure Qt6 and CMake
+      - name: Build
+        run: echo Build HomeDigitalCenter
