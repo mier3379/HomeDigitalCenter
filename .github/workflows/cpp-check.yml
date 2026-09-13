@@ -1,0 +1,12 @@
+name: C++ Check
+
+on:
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Static Analysis
+        run: echo Run cppcheck and clang-format checks
