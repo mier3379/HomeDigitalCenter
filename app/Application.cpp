@@ -9,5 +9,15 @@ Application& Application::instance()
 
 bool Application::initialize()
 {
+    if (!registerModules())
+        return false;
+
     return RuntimeContext::instance().initialize();
+}
+
+bool Application::registerModules()
+{
+    // Module registration entry point.
+    // Real module instances will be injected here as modules mature.
+    return true;
 }
