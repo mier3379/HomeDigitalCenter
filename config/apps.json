@@ -1,0 +1,19 @@
+{
+    "apps": [
+        {
+            "id": "video",
+            "name": "影视中心",
+            "path": "jellyfin.exe"
+        },
+        {
+            "id": "music",
+            "name": "音乐中心",
+            "path": "homeAPlayer.exe"
+        },
+        {
+            "id": "book",
+            "name": "阅读中心",
+            "path": "Readest.exe"
+        }
+    ]
+}
