@@ -7,6 +7,11 @@
 
 namespace HDC {
 
+LauncherManager::LauncherManager(QObject *parent)
+    : QObject(parent)
+{
+}
+
 bool LauncherManager::loadConfig(const QString &file)
 {
     QFile config(file);
@@ -18,18 +23,20 @@ bool LauncherManager::loadConfig(const QString &file)
 
     m_apps.clear();
     for (const auto &item : apps) {
-        auto obj = item.toObject();
+        const auto obj = item.toObject();
+
         AppInfo info;
         info.id = obj.value("id").toString();
         info.name = obj.value("name").toString();
         info.path = obj.value("path").toString();
+
         m_apps.append(info);
     }
 
     return true;
 }
 
-bool LauncherManager::launch(const QString &id)
+bool LauncherManager::launchApp(const QString &id)
 {
     for (const auto &app : m_apps) {
         if (app.id == id)
