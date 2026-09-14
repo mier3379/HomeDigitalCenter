@@ -1,6 +1,6 @@
 #include "MainWindow.h"
-
-#include <QLabel>
+#include "DashboardWidget.h"
+#include "../core/LauncherManager.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -8,6 +8,6 @@ MainWindow::MainWindow(QWidget *parent)
     setWindowTitle("HomeDigitalCenter");
     resize(1200, 800);
 
-    auto *label = new QLabel("HomeDigitalCenter Qt6 Framework", this);
-    setCentralWidget(label);
+    auto *dashboard = new DashboardWidget(this);
+    setCentralWidget(dashboard);
 }
