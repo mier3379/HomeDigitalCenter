@@ -1,5 +1,9 @@
 #include "RuntimeContext.h"
 
+RuntimeContext::RuntimeContext()
+{
+}
+
 RuntimeContext& RuntimeContext::instance()
 {
     static RuntimeContext context;
@@ -8,5 +12,10 @@ RuntimeContext& RuntimeContext::instance()
 
 bool RuntimeContext::initialize()
 {
-    return true;
+    return m_pluginRegistry.initializePlugins();
+}
+
+PluginRegistry& RuntimeContext::plugins()
+{
+    return m_pluginRegistry;
 }
