@@ -10,18 +10,21 @@ DashboardWidget::DashboardWidget(QWidget *parent)
 {
     auto *layout = new QGridLayout(this);
 
-    const QStringList modules = {
-        "影视中心",
-        "音乐中心",
-        "阅读中心",
-        "图片中心",
-        "文件中心",
-        "设置"
+    const QList<QPair<QString, QString>> modules = {
+        {"影视中心", "video"},
+        {"音乐中心", "music"},
+        {"阅读中心", "book"},
+        {"图片中心", "photo"},
+        {"文件中心", "file"},
+        {"设置", "settings"}
     };
 
     int index = 0;
-    for (const auto &name : modules) {
-        auto *button = new QPushButton(name, this);
+    for (const auto &module : modules) {
+        auto *button = new QPushButton(module.first, this);
+        connect(button, &QPushButton::clicked, this, [this, module]() {
+            emit launchRequested(module.second);
+        });
         layout->addWidget(button, index / 3, index % 3);
         index++;
     }
