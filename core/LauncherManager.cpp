@@ -1,4 +1,5 @@
 #include "LauncherManager.h"
+#include "RuntimePaths.h"
 
 #include <QFile>
 #include <QJsonDocument>
@@ -39,8 +40,14 @@ bool LauncherManager::loadConfig(const QString &file)
 bool LauncherManager::launchApp(const QString &id)
 {
     for (const auto &app : m_apps) {
-        if (app.id == id)
-            return QProcess::startDetached(app.path);
+        if (app.id == id) {
+            const QString executable = RuntimePaths::resolve(app.path);
+
+            if (!QFile::exists(executable))
+                return false;
+
+            return QProcess::startDetached(executable);
+        }
     }
 
     return false;
